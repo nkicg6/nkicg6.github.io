@@ -5,6 +5,7 @@
             [hiccup.page :as hiccup]))
 
 (def source-dir "resources")
+(def out-dir "website")
 
 (defn key-to-html [s]
   (str/replace s #".md" ".html"))
@@ -15,6 +16,8 @@
         html-content (map md/md-to-html-string (vals data))]
     (zipmap html-paths html-content)))
 
+(defn get-css [src]
+  (stasis/slurp-directory src #".*\.css$"))
 
 (defn apply-header-footer [page]
   (hiccup/html5 {:lang "en"}
@@ -23,6 +26,7 @@
                  [:meta {:charset "utf-8"}]
                  [:meta {:name "viewport"
                          :content "width=device-width, initial-scale=1.0"}]
+                 [:link {:type "text/css" :href "/css/style.css" :rel "stylesheet"}]
                  [:body
                   [:div {:class "header"}
                    [:div {:class "name"}
@@ -33,11 +37,16 @@
                  [:footer
                   [:p "This is the footer"]]]))
 
-(apply-header-footer "Here is some content")
-
 (defn format-pages [m]
   (let [html-keys (keys m)
         page-data (map apply-header-footer (vals m))]
     (zipmap html-keys page-data)))
 
-(format-pages (read-and-convert! source-dir))
+(defn merge-website-assets! [root-dir]
+  (let [page-map (format-pages (read-and-convert! root-dir))
+        css-map (get-css source-dir)]
+    (stasis/merge-page-sources {:css css-map
+                                :pages page-map})))
+
+(def server
+  (stasis/serve-pages (merge-website-assets! source-dir)))
