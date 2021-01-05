@@ -1,0 +1,51 @@
+/* /css/style.css */
+ html{
+     font-size: 16px;
+     font-family: "sans-serif";
+     line-height: 1.35;
+ }
+
+ body{
+     max-width: 600px;
+     margin-left: 25%;
+     margin-top: 10px;
+     margin-bottom: 10px;
+ }
+/* see /css/style.css for full css */ 
+ .header {
+   /* border: 3px solid green; */
+   overflow: hidden;
+   max-width: 600px
+   margin-top: 0.5em;
+   margin-bottom: 2em;
+   font-size: 1.15rem;
+   border-bottom: 1px solid black;
+ }
+
+ .header a {
+   float: left;
+   color: black;
+   text-align: left;
+   text-decoration: none;
+   border-radius: 4px;
+   padding: 0.5em;
+ }
+
+ .header-right {
+   float: right;
+ }
+
+footer {
+  /* border: 3px solid red; */
+  padding-left: 1em;
+  padding-right: 1em;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  position: center;
+  margin-left: 25%;
+  margin-right: 25%;
+  font-size: 1.1rem;
+  color: #696969;  
+  max-width: 600px;
+}

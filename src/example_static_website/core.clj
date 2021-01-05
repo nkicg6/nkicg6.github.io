@@ -50,3 +50,8 @@
 
 (def server
   (stasis/serve-pages (merge-website-assets! source-dir)))
+
+(defn export! []
+  (stasis/empty-directory! out-dir)
+  (stasis/export-pages (merge-website-assets! source-dir) out-dir)
+  (println "Website is done!"))

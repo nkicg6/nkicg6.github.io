@@ -10,4 +10,5 @@
                  [ring "1.8.2"]]
   :ring {:handler example-static-website.core/server}
   :profiles {:dev {:plugins [[lein-ring "0.12.5"]]}}
-  :repl-options {:init-ns example-static-website.core})
+  :repl-options {:init-ns example-static-website.core}
+  :aliases {"build-site" ["run" "-m" "example-static-website.core/export!"]})
