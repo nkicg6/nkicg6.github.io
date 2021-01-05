@@ -5,7 +5,7 @@
             [hiccup.page :as hiccup]))
 
 (def source-dir "resources")
-(def out-dir "website")
+(def out-dir "docs")
 
 (defn key-to-html [s]
   (str/replace s #".md" ".html"))
